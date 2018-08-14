@@ -1,0 +1,65 @@
+name:                html-to-elm
+version:             0.1.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/isomoar/html-to-elm#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Jane G. <isomoar@gmail.com>
+maintainer:          Jane G. <isomoar@gmail.com>
+copyright:           2018 Author name here
+category:            Text
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+library
+  build-depends:       base >= 4.7 && < 5
+                       , tagsoup
+                       , containers
+                       , raw-strings-qq
+                       , split
+                       , text
+                       , casing
+  hs-source-dirs:      lib
+  default-language:    Haskell2010
+  ghc-options:         -Wall
+  exposed-modules: 
+      HtmlToElm.Parser
+  other-modules: 
+      HtmlToElm.WhiteList
+      HtmlToElm.HtmlAttributes
+      HtmlToElm.Util
+
+executable html-to-elm
+  hs-source-dirs:      src
+  main-is:             MainCli.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                       , html-to-elm
+                       , text
+
+executable html-to-elm-web
+  hs-source-dirs:      src
+  main-is:             MainWeb.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                       , html-to-elm
+                       , text
+                       , scotty
+                       , MissingH
+                       , aeson
+
+test-suite test-html-to-elm
+    type: exitcode-stdio-1.0
+    default-language: Haskell2010
+    build-depends:
+    build-depends:       
+        base >= 4.7 && < 5
+        , raw-strings-qq
+        , html-to-elm
+        , hspec
+        , text
+
+    main-is: Generate.hs
+    hs-source-dirs: test
