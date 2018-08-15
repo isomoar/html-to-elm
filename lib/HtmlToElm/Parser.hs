@@ -215,10 +215,13 @@ generateImports (Resolved (svgT, svgA) (htmlT, htmlA)) =
       SvgAttributes  -> "Svg.Attributes"
 
 parse :: T.Text -> T.Text
-parse input =
-  let tags     = parseTags input
-      tree     = parseTree input
-      treeHead = head tree
-      resolved = getResolved $ parseTagsArray tags
-      body     = treeToString 1 resolved False treeHead
-  in  generateImports resolved <> "\nview = \n    " <> body
+parse input = if i == ""
+  then ""
+  else generateImports resolved <> "\nview = \n    " <> body
+ where
+  i        = T.strip input
+  tags     = parseTags i
+  tree     = parseTree i
+  treeHead = head tree
+  resolved = getResolved $ parseTagsArray tags
+  body     = treeToString 1 resolved False treeHead

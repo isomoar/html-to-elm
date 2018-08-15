@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>My app!</title>
+    <style>
+      body {
+        background-color: rgb(96, 181, 204);
+        font-family: calibri, helvetica, arial;
+        margin: 40px 0;
+      }
+      textarea {
+        width: 500px;
+        height: 500px;
+        font-family: monospace;
+        white-space: nowrap;
+      }
+      textarea[disabled] {
+        background-color:#eee;
+      }
+      .container {
+        width: 1030px;
+        margin: 0 auto;
+      }
+      button {
+        font-size: 20px;
+        cursor: pointer;
+      }
+      .btn-container {
+        display: flex;
+        justify-content: space-around;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <textarea placeholder="Put a valid html/svg in here!" id="html-t"></textarea>
+      <textarea id="elm-t"></textarea>
+      <div class="btn-container">
+        <a href="#" id="example">Example</a>
+        <button>Generate</button>
+      </div>
+    </div>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  </body>
+  <script>
+    var sample = "<div class=\"d-lg-flex\">\n   <ul class=\"user-nav d-lg-flex flex-items-center list-style-none\" id=\"user-links\">\n      <li class=\"dropdown\">\n         <span class=\"d-none d-lg-block  px-2\">\n            <a aria-label=\"You have unread notifications\" class=\"notification-indicator tooltipped tooltipped-s my-2 my-lg-0 js-socket-channel js-notification-indicator\" data-hotkey=\"g n\" data-ga-click=\"Header, go to notifications, icon:unread\" data-channel=\"notification-changed:5099105\" href=\"/notifications\">\n               <span class=\"mail-status unread\"></span>\n               <svg class=\"octicon octicon-bell\" viewBox=\"0 0 14 16\" version=\"1.1\" width=\"14\" height=\"16\" aria-hidden=\"true\">\n                  <path fill-rule=\"evenodd\" d=\"M13.99 11.991v1H0v-1l.73-.58c.769-.769.809-2.547 1.189-4.416.77-3.767 4.077-4.996 4.077-4.996 0-.55.45-1 .999-1 .55 0 1 .45 1 1 0 0 3.387 1.229 4.156 4.996.38 1.879.42 3.657 1.19 4.417l.659.58h-.01zM6.995 15.99c1.11 0 1.999-.89 1.999-1.999H4.996c0 1.11.89 1.999 1.999 1.999z\"></path>\n               </svg>\n            </a>\n         </span>\n      </li>\n      <li class=\"dropdown\">\n         <details class=\"details-overlay details-reset d-none d-lg-flex px-lg-2 py-2 py-lg-0 flex-items-center\">\n            <summary class=\"HeaderNavlink\" aria-label=\"Create new…\" data-ga-click=\"Header, create new, icon:add\" aria-haspopup=\"menu\">\n               <svg class=\"octicon octicon-plus float-left mr-1 mt-1\" viewBox=\"0 0 12 16\" version=\"1.1\" width=\"12\" height=\"16\" aria-hidden=\"true\">\n                  <path fill-rule=\"evenodd\" d=\"M12 9H7v5H5V9H0V7h5V2h2v5h5v2z\"></path>\n               </svg>\n               <span class=\"dropdown-caret mt-1\"></span>\n            </summary>\n            <details-menu class=\"dropdown-menu dropdown-menu-sw\" role=\"menu\">\n               <a role=\"menuitem\" class=\"dropdown-item\" href=\"/new\" data-ga-click=\"Header, create new repository\">\n               New repository\n               </a>\n               <a role=\"menuitem\" class=\"dropdown-item\" href=\"/new/import\" data-ga-click=\"Header, import a repository\">\n               Import repository\n               </a>\n               <a role=\"menuitem\" class=\"dropdown-item\" href=\"https://gist.github.com/\" data-ga-click=\"Header, create new gist\">\n               New gist\n               </a>\n               <a role=\"menuitem\" class=\"dropdown-item\" href=\"/organizations/new\" data-ga-click=\"Header, create new organization\">\n               New organization\n               </a>\n            </details-menu>\n         </details>\n      </li>\n      <li class=\"dropdown\">\n         <a class=\"d-lg-none HeaderNavlink name tooltipped tooltipped-sw px-lg-2 py-2 py-lg-0\" href=\"/isomoar\" aria-label=\"View profile and more\" aria-expanded=\"false\" aria-haspopup=\"false\">\n         <img alt=\"@isomoar\" class=\"avatar float-left mr-1\" src=\"https://avatars1.githubusercontent.com/u/5099105?s=40&amp;v=4\" height=\"20\" width=\"20\">\n         <span class=\"text-bold\">isomoar</span>\n         </a>\n         <details class=\"details-overlay details-reset d-none d-lg-flex pl-lg-2 py-2 py-lg-0 flex-items-center\">\n            <summary class=\"HeaderNavlink name mt-1\" aria-label=\"View profile and more\" data-ga-click=\"Header, show menu, icon:avatar\" aria-haspopup=\"menu\">\n               <img alt=\"@isomoar\" class=\"avatar float-left mr-1\" src=\"https://avatars1.githubusercontent.com/u/5099105?s=40&amp;v=4\" height=\"20\" width=\"20\">\n               <span class=\"dropdown-caret\"></span>\n            </summary>\n            <details-menu class=\"dropdown-menu dropdown-menu-sw\" role=\"menu\">\n               <ul>\n                  <li class=\"header-nav-current-user css-truncate\"><a role=\"menuitem\" class=\"no-underline user-profile-link px-3 pt-2 pb-2 mb-n2 mt-n1 d-block\" href=\"/isomoar\" data-ga-click=\"Header, go to profile, text:Signed in as\">Signed in as <strong class=\"css-truncate-target\">isomoar</strong></a></li>\n                  <li class=\"dropdown-divider\"></li>\n                  <li><a role=\"menuitem\" class=\"dropdown-item\" href=\"/isomoar\" data-ga-click=\"Header, go to profile, text:your profile\">Your profile</a></li>\n                  <li><a role=\"menuitem\" class=\"dropdown-item\" href=\"/isomoar?tab=repositories\" data-ga-click=\"Header, go to repositories, text:your repositories\">Your repositories</a></li>\n                  <li><a role=\"menuitem\" class=\"dropdown-item\" href=\"/isomoar?tab=stars\" data-ga-click=\"Header, go to starred repos, text:your stars\">Your stars</a></li>\n                  <li><a role=\"menuitem\" class=\"dropdown-item\" href=\"https://gist.github.com/\" data-ga-click=\"Header, your gists, text:your gists\">Your gists</a></li>\n                  <li class=\"dropdown-divider\"></li>\n                  <li><a role=\"menuitem\" class=\"dropdown-item\" href=\"https://help.github.com\" data-ga-click=\"Header, go to help, text:help\">Help</a></li>\n                  <li><a role=\"menuitem\" class=\"dropdown-item\" href=\"/settings/profile\" data-ga-click=\"Header, go to settings, icon:settings\">Settings</a></li>\n                  <li>\n                     <!-- '\"` --><!-- </textarea></xmp> -->\n                     <form class=\"logout-form\" action=\"/logout\" accept-charset=\"UTF-8\" method=\"post\"><input name=\"utf8\" type=\"hidden\" value=\"✓\"><input type=\"hidden\" name=\"authenticity_token\" value=\"Ko+8oAGA+Iz9mQoCsg/Qr3yynvJFC0mmPM1EVV2/4PHHyuSPT2rttD6LNQD2RGzKAm1xxt/5IWOg9vhGX4HNgQ==\">\n                        <button type=\"submit\" class=\"dropdown-item dropdown-signout\" data-ga-click=\"Header, sign out, icon:logout\" role=\"menuitem\">\n                        Sign out\n                        </button>\n                     </form>\n                  </li>\n               </ul>\n            </details-menu>\n         </details>\n      </li>\n   </ul>\n   <!-- '\"` --><!-- </textarea></xmp> -->\n   <form class=\"d-lg-none\" action=\"/logout\" accept-charset=\"UTF-8\" method=\"post\">\n      <input name=\"utf8\" type=\"hidden\" value=\"✓\"><input type=\"hidden\" name=\"authenticity_token\" value=\"eSTjo8Rt03pUA046+ILhzZjwlLVvjX3G0QVRqJpMwA6UYbuMiofGQpcRcTi8yV2o5i97gfV/FQNNPu27mHLtfg==\">\n      <button type=\"submit\" class=\"btn-link HeaderNavlink d-block width-full text-left py-2 text-bold\" data-ga-click=\"Header, sign out, icon:logout\" style=\"padding-left: 2px;\">\n         <svg class=\"octicon octicon-sign-out v-align-middle\" style=\"margin-right: 2px;\" viewBox=\"0 0 16 16\" version=\"1.1\" width=\"16\" height=\"16\" aria-hidden=\"true\">\n            <path fill-rule=\"evenodd\" d=\"M11.992 8.994V6.996H7.995v-2h3.997V2.999l3.998 2.998-3.998 2.998zm-1.998 2.998H5.996V2.998L2 1h7.995v2.998h1V1c0-.55-.45-.999-1-.999H.999A1.001 1.001 0 0 0 0 1v11.372c0 .39.22.73.55.91L5.996 16v-3.008h3.998c.55 0 1-.45 1-1V7.996h-1v3.998z\"></path>\n         </svg>\n         Sign out\n      </button>\n   </form>\n   <!-- '\"` --><!-- </textarea></xmp> -->\n   <form class=\"sr-only right-0\" action=\"/logout\" accept-charset=\"UTF-8\" method=\"post\"><input name=\"utf8\" type=\"hidden\" value=\"✓\"><input type=\"hidden\" name=\"authenticity_token\" value=\"vQqe1f+zqxvrvD6ZtJWf6rHdLOiU0uv9BuaVeIYmC/hQT8b6sVm+IyiuAZvw3iOPzwLD3A4ggzia3SlrhBgmiA==\">\n      <button type=\"submit\" class=\"dropdown-item dropdown-signout\" data-ga-click=\"Header, sign out, icon:logout\">\n      Sign out\n      </button>\n   </form>\n</div>\n";
+    var elmt = $("#elm-t");
+
+    $("a#example").click(function() {
+        $("#html-t").val(sample);
+    });
+
+    $("button").click(function() {
+      var htmlText = $("#html-t").val();
+      var requestObject = {bodyText: htmlText}
+
+      elmt.attr("disabled", true);
+      elmt.val("");
+
+      $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/",
+        data : JSON.stringify(requestObject),
+        success : function(data) {
+          elmt.val(data);
+          elmt.removeAttr("disabled");
+        },
+        dataType: "json"
+      });
+    });
+  </script>
+</html>

@@ -49,6 +49,10 @@ executable html-to-elm-web
                        , scotty
                        , MissingH
                        , aeson
+                       , transformers
+                       , bytestring
+                       , wai-extra
+                       , wai-middleware-static
 
 test-suite test-html-to-elm
     type: exitcode-stdio-1.0
